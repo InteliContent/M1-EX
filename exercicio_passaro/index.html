@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
-    <title>Phaser Animation</title>
+    <title>Exercício do Pássaro</title>
     <style>
         body {
             display: flex;
@@ -22,13 +22,7 @@
         type: Phaser.AUTO,
         width: 800,
         height: 600,
-        physics: {
-            default: 'arcade',
-            arcade: {
-                gravity: { y: 0 },
-                debug: false
-            }
-        },
+
         scene: {
             preload: preload,
             create: create,
@@ -37,17 +31,17 @@
     };
 
     var game = new Phaser.Game(config);
-    var bird;
+
+    var passarinho;
 
     function preload() {
-        this.load.image('bg', 'bg_space.png');
-        this.load.spritesheet('bird', 'bird-purple.png', { frameWidth: 75, frameHeight: 75 });
+        this.load.image('bg', 'assets/bg_space.png');
+        this.load.spritesheet('bird', 'assets/bird-purple.png', { frameWidth: 75, frameHeight: 75 });
     }
 
     function create() {
         this.add.image(400, 300, 'bg').setScale(1.2);
-
-        bird = this.add.sprite(100, 300, 'bird').setScale(1.3);
+        passarinho = this.add.sprite(100, 300, 'bird').setScale(1.3);
 
         this.anims.create({
             key: 'fly',
@@ -55,29 +49,31 @@
             frameRate: 10,
             repeat: -1
         });
-        bird.anims.play('fly', true);
+
+        passarinho.anims.play('fly', true);
+
     }
 
     function update() {
-        if (bird.x === 100) {
-            bird.setFlip(false, false);
-            bird.ida = true;
+        
+        if (passarinho.x === 100) {
+            passarinho.setFlip(false, false);
+            passarinho.ida = true;
         }
     
-        if (bird.x < 700 && bird.ida) {
-            console.log("andando para a direita");
-            bird.x += 5;
+        if (passarinho.x < 700 && passarinho.ida === true) {
+            passarinho.x += 5;
         }
     
-        if (bird.x === 700) {
-            bird.setFlip(true, false);
-            bird.ida = false;
+        if (passarinho.x === 700) {
+            passarinho.setFlip(true, false);
+            passarinho.ida = false;
         }
     
-        if (bird.x > 100 && !bird.ida) {
-            console.log("andando para a esquerda");
-            bird.x -= 5;
-        }
+        if (passarinho.x > 100 && passarinho.ida === false) {
+            passarinho.x -= 5;
+        }   
+    
     }
 
 </script>
