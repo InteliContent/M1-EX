@@ -6,7 +6,13 @@
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
     <title>Phaser Animation</title>
     <style>
-        body { margin: 0; }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -34,12 +40,14 @@
     var bird;
 
     function preload() {
-        this.load.image('rect', 'chao.png');
+        this.load.image('bg', 'bg_space.png');
         this.load.spritesheet('bird', 'bird-purple.png', { frameWidth: 75, frameHeight: 75 });
     }
 
     function create() {
-        bird = this.add.sprite(100, 100, 'bird');
+        this.add.image(400, 300, 'bg').setScale(1.2);
+
+        bird = this.add.sprite(100, 300, 'bird').setScale(1.3);
 
         this.anims.create({
             key: 'fly',
@@ -56,12 +64,12 @@
             bird.ida = true;
         }
     
-        if (bird.x < 550 && bird.ida) {
+        if (bird.x < 700 && bird.ida) {
             console.log("andando para a direita");
             bird.x += 5;
         }
     
-        if (bird.x === 550) {
+        if (bird.x === 700) {
             bird.setFlip(true, false);
             bird.ida = false;
         }
