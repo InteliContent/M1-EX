@@ -2,17 +2,12 @@
 <html lang="en"> 
 <head> 
     <meta charset="UTF-8" />
-    <title>Flappy Dragon</title>
+    <title>Dragon: 1 Cena</title>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.23.0/dist/phaser.js"></script>
 
     <style>
-        body {
-            text-align: center;
-        }
-
         canvas {
-            border: 1px solid #000000;
-        }
+            border: 5px solid #000000; }
     </style>
 
 </head>
@@ -21,20 +16,28 @@
 
     <script type="text/javascript">
 
-        /*Definição de variáveis globais*/
         this.config = {
             type: Phaser.AUTO,
-            autoCenter: true,
-            width: 400, //largura da tela do jogo
-            height: 600, //altura da tela do jogo
+            width: 400, 
+            height: 600, 
+
+            // para ajustar a escala do jogo de acordo com a tela
+            scale: { 
+                mode: Phaser.Scale.HEIGHT_CONTROLS_WIDTH,
+                //também podemos usar "mode: Phaser.Scale.FIT"
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            },
+            
             backgroundColor: '#39addd',
+
             physics: {
                 default: 'arcade',
                 arcade: {
                     gravity: { y: 10 },
-                    debug: false //controla se as linhas dos limites dos objetos sao mostradas
+                    debug: false 
                 }
             },
+
             scene: {
                 preload: preload,
                 create: create,
@@ -42,13 +45,17 @@
             }
         };
 
+
         var game_obj = new Phaser.Game(this.config);
+
+        
+        // Organizando as variáveis que vamos usar
 
         // *** 1) FUNDO *****
         // A imagem do fundo possui 1200 de largura e 400 de altura.
         // Mas somente uma janela de 400x400 é exibida por vez.
         // Essa janela vai se alterando, simulando o movimento do fundo
-        // As variáveis possibilitam o controle da janela em exibição
+        // As variáveis possibilitam o controle da janela em exibição.
         var bg = {
             x_start: 0,
             x: 0,
@@ -92,6 +99,9 @@
 
         /*******************************/
 
+
+        // Organizando as variáveis que vamos usar
+
         function preload(){
             this.load.image('bg', '../img/fundo.png');
             this.load.spritesheet('dragon', '../img/dragao.png', { frameWidth: player.width, frameHeight: player.height });
@@ -101,26 +111,30 @@
         }
 
 
+        // Criando os objetos na tela
+
         function create(){
             /*Adiciona a imagem de fundo e a salva na chave "obj" da variável "bg"*/
             bg.obj = this.add.image(bg.x, bg.y, 'bg').setOrigin(0,0);
 
 
             /*Adiciona imagens das colunas*/
+            //coluna do teto
             cols.col1_obj = this.add.image(cols.x, cols.y, 'col_upper').setOrigin(0,0);
-            cols.col2_obj = this.add.image(cols.x, cols.y + cols.height + cols.space, 'col_bottom').setOrigin(0,0);
             this.physics.add.existing(cols.col1_obj);
-            this.physics.add.existing(cols.col2_obj);
             cols.col1_obj.body.allowGravity = false; 
-            cols.col2_obj.body.allowGravity = false;
             cols.col1_obj.body.setVelocityX(-cols.speed); 
+
+            //coluna do chão
+            cols.col2_obj = this.add.image(cols.x, cols.y + cols.height + cols.space, 'col_bottom').setOrigin(0,0);
+            this.physics.add.existing(cols.col2_obj);
+            cols.col2_obj.body.allowGravity = false;
             cols.col2_obj.body.setVelocityX(-cols.speed); 
 
             /*Adiciona jogador e suas propriedades físicas*/
             player.obj = this.physics.add.sprite(170, 130, 'dragon').setScale(.8);
             player.obj.body.setSize(50,80,true);
             player.obj.setCollideWorldBounds(true);
-
 
             /*Adiciona animação da imagem do jogador*/
             this.anims.create({
@@ -129,6 +143,7 @@
                 frameRate: 10,
                 repeat: -1
             });
+
             /*Adiciona a animação do movimento do jogador*/
             player.obj.anims.play('fly');
 
