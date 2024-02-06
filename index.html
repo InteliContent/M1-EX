@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplos Phaser</title>
+    <title>Exercícios Phaser</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         header {
             background-color: #333;
@@ -18,22 +21,34 @@
             margin-top: 20px;
             text-align: center;
         }
-        nav a {
-            margin: 0 15px;
-            color: #333;
+        a.button {
+            display: inline-block;
+            margin: 10px;
+            padding: 8px 16px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #333;
             text-decoration: none;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        a.button:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Testes Phaser3</h1>
+        <h1>Exercícios Phaser</h1>
     </header>
     <nav>
-        <a href="exercicio_peixe/index.html">Peixe (semana 1)</a>
-
-        <a href="exercicio_passaro/index.html">Pássaro (semana 2)</a>
-
+        <a href="exercicio_peixe/index.html" class="button">Peixe (semana 1)</a>
+        <a href="exercicio_passaro/index.html" class="button">Pássaro (semana 2)</a>
+        <a href="exercicio_alien/index.html" class="button">Alienígena (semana 3)</a>
+        <a href="exercicio_dragao\CenaUnica\oneScene.html" class="button">Dragão - 1 Cena (semana 4)</a>
+        <a href="exercicio_dragao\duasCenas.html" class="button">Dragão - 2 Cenas (semana 4)</a>
     </nav>
 </body>
 </html>
