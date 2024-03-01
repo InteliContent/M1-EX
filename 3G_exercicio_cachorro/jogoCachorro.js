@@ -59,8 +59,8 @@ function create() {
 
     this.physics.add.overlap(cachorro, pizza, function () {
         pizza.setVisible(false);
-        var posicaoPizza_Y = Phaser.Math.RND.between(50, 650);
-        pizza.setPosition(posicaoPizza_Y, 100);
+        var posicaoPizza = Phaser.Math.RND.between(50, 650);
+        pizza.setPosition(posicaoPizza, 100);
         petiscos += 1;
 
         placar.setText('Petiscos: ' + petiscos);
