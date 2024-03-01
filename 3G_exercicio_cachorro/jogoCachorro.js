@@ -37,7 +37,7 @@ var petiscos = 0;
 function preload() {
     this.load.image('fundo', 'assets/fundoRosa.jpg');
     this.load.image('logo', 'assets/logo-inteli_branco.png');
-    this.load.image('pizza', 'assets/bola.png'); // Substitui "bola" por "pizza"
+    this.load.image('pizza', 'assets/bola.png');
     this.load.image('cachorro', 'assets/Lucio.png');
 }
 
